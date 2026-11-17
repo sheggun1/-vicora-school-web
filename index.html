@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101b35">
+<meta name="description" content="VICORA School platform administration"><title>VICORA School — Platform Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
+</head>
+<body><div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<a class="brand" href="#overview"><span class="brand-mark">V</span><span class="brand-copy"><strong>VICORA</strong><small>SCHOOL</small></span></a>
+<div class="workspace-label">PLATFORM ADMIN</div>
+<nav class="main-nav" aria-label="Main navigation">
+<button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span>Overview</button>
+<button class="nav-item" data-view="schools"><span class="nav-icon">▦</span>School registry</button>
+<button class="nav-item" data-view="features"><span class="nav-icon">◇</span>Feature control</button>
+<button class="nav-item" data-view="plans"><span class="nav-icon">▣</span>Plans &amp; access</button>
+<button class="nav-item" data-view="audit"><span class="nav-icon">≋</span>Audit trail</button>
+</nav>
+<div class="sidebar-bottom"><div class="help-card"><span class="help-icon">✦</span><strong>Platform-wide control</strong><p>Manage schools and grant access to supported features.</p></div><div class="profile"><span class="avatar">SA</span><span><strong>Super Admin</strong><small>Secure platform access</small></span></div></div>
+</aside>
+<main class="main-content">
+<header class="topbar"><button class="mobile-menu" id="menuButton" aria-label="Open navigation">☰</button><div class="crumb"><span>VICORA School</span><b>/</b><strong id="crumbCurrent">Overview</strong></div><div class="top-actions"><span class="preview-pill"><i></i> Live registry</span><span class="top-avatar">SA</span></div></header>
+<div class="demo-banner"><strong>Secure console</strong><span>Sign in to load the live VICORA school registry and platform governance data.</span></div>
+<section class="page-content" id="view-overview">
+<div class="welcome-row"><div><p class="eyebrow">SUPER ADMIN CONSOLE</p><h1>Platform control,<br><em>at a glance.</em></h1><p class="intro">Manage school onboarding, platform capabilities and access rules from one place.</p></div><div class="welcome-orb"><span>V</span><i></i><b></b></div></div>
+<div class="stat-grid">
+<article class="stat-card"><div class="stat-top"><span>Registered schools</span><span class="stat-icon blue">▦</span></div><strong id="statSchools">—</strong><small>Live registry</small></article>
+<article class="stat-card"><div class="stat-top"><span>Active schools</span><span class="stat-icon green">↗</span></div><strong id="statActive">—</strong><small>Registry status</small></article>
+<article class="stat-card"><div class="stat-top"><span>Platform capabilities</span><span class="stat-icon violet">◇</span></div><strong id="statFeatures">—</strong><small>Platform feature catalogue</small></article>
+<article class="stat-card"><div class="stat-top"><span>Pending applications</span><span class="stat-icon amber">◷</span></div><strong>—</strong><small>Awaiting review</small></article>
+</div>
+<div class="lower-grid">
+<article class="panel"><div class="panel-heading"><div><p class="eyebrow">TENANT GOVERNANCE</p><h3>Every school has its own boundary</h3></div><span class="panel-symbol">▦</span></div><p class="panel-copy">The registry stores school identity and provisioning references. Academic and finance records belong in each school's separate data store and file folder.</p><button class="primary-button" data-go="schools">Open school registry <span>→</span></button></article>
+<article class="panel"><div class="panel-heading"><div><p class="eyebrow">FEATURE GOVERNANCE</p><h3>Three checks before access</h3></div><span class="panel-symbol">◇</span></div><div class="feature-steps"><div><span>01</span><p><strong>Platform capability</strong><small>Implemented and approved for release.</small></p></div><div><span>02</span><p><strong>Plan entitlement</strong><small>Included in the school's subscription.</small></p></div><div><span>03</span><p><strong>School assignment</strong><small>Enabled by Super Admin for that tenant.</small></p></div></div><button class="text-button" data-go="features">Manage feature access →</button></article>
+</div>
+<footer>© <span id="year"></span> Veehicee Telecommunications and Services · VICORA School</footer>
+</section>
+
+<section class="page-content alternate-view" id="view-schools" hidden>
+<div class="page-title-row"><div><p class="eyebrow">TENANT MANAGEMENT</p><h1>School registry</h1><p class="intro">Review applications and manage each school's independent workspace.</p></div><button class="primary-button" id="newSchoolButton">↻ Refresh registry</button></div>
+<div class="notice"><span class="notice-symbol">i</span><p>School records below are loaded from the authenticated VICORA registry. Use the refresh control to retrieve the latest registry data.</p></div>
+<div class="toolbar"><input id="schoolSearch" type="search" placeholder="Search school name or ID" aria-label="Search schools"><select id="schoolStatus" aria-label="Filter by status"><option value="all">All statuses</option><option value="Active">Active</option><option value="Pending">Pending</option><option value="Suspended">Suspended</option></select></div>
+<div class="table-wrap"><table><thead><tr><th>School</th><th>School ID</th><th>Type</th><th>Status</th><th>Plan</th><th>Actions</th></tr></thead><tbody id="schoolRows"></tbody></table></div>
+<p class="table-note">School records are retrieved from the live registry.</p>
+</section>
+
+<section class="page-content alternate-view" id="view-features" hidden>
+<div class="page-title-row"><div><p class="eyebrow">PLATFORM GOVERNANCE</p><h1>Feature control</h1><p class="intro">Choose a school and review which supported capabilities it can use.</p></div></div>
+<div class="notice"><span class="notice-symbol">!</span><p>Feature access shown here is evaluated by the VICORA backend. Select a school from the registry to inspect its current access.</p></div>
+<div class="feature-toolbar"><label for="featureSchool">School</label><select id="featureSchool"><option value="">Choose a school from the registry</option></select></div>
+<div class="feature-legend"><span><i class="dot ready"></i> Platform-ready (example)</span><span><i class="dot planned"></i> Planned capability</span></div>
+<div class="feature-list" id="featureList"></div>
+<div class="access-summary" id="accessSummary" aria-live="polite"></div>
+</section>
+
+<section class="page-content alternate-view" id="view-plans" hidden>
+<p class="eyebrow">SUBSCRIPTION GOVERNANCE</p><h1>Plans &amp; access</h1><p class="intro">Define plan entitlements independently from each school's individual feature assignments.</p>
+<div class="empty-state"><span>▣</span><h2>Plan administration is the next backend milestone</h2><p>Plan limits, subscription lifecycle, grace periods and exceptional grants will be stored and enforced server-side. No payment provider is connected.</p></div>
+</section>
+<section class="page-content alternate-view" id="view-audit" hidden>
+<p class="eyebrow">ACCOUNTABILITY</p><h1>Audit trail</h1><p class="intro">Privileged changes must be traceable to an authenticated administrator.</p>
+<div class="empty-state"><span>≋</span><h2>Audit service is not connected</h2><p>Production audit events will be append-only and include actor, action, target school, timestamp and outcome.</p></div>
+</section>
+</main></div>
+<script src="app.js"></script></body></html>
